@@ -1,0 +1,55 @@
+<div class="container">
+<p-table [value]="customers" #dt [filterDelay]="0"  [globalFilterFields]="['id','first_name','last_name','address','date_of_birth','payment']" styleClass="ui-table-customers" [rowHover]="true" >
+  <ng-template pTemplate="caption">
+    <div class="ui-table-globalfilter-container">
+        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+    </div>
+</ng-template>
+  <ng-template pTemplate="header">
+      <tr style="background-color: lightblue;">
+          <th field="id">Id</th>
+          <th field="first_name">First Name</th>
+          <th field="last_name">Last Name</th>
+          <th  field="address">Address</th>
+          <th  pSortableColumn="date_of_birth" field="date_of_birth">Date<p-sortIcon field="date_of_birth"></p-sortIcon></th>
+          <th pSortableColumn="payment" field="payment">Payment<p-sortIcon field="payment"></p-sortIcon></th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-customer>
+      <tr>
+          <td>{{customer.id}}</td>
+          <td>{{customer.first_name}}</td>
+          <td>{{customer.last_name}}</td>
+
+          <td pEditableColumn><p-cellEditor>
+            <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="customer.address">
+            </ng-template>
+            <ng-template pTemplate="output">
+                {{customer.address}}
+            </ng-template>
+        </p-cellEditor></td>
+
+          <td>{{customer.date_of_birth}}</td>
+
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="customer.payment">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{customer.payment}}
+          </ng-template>
+            </p-cellEditor></td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="footer" let-rowData>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td style="text-align: center;background-color: lightblue; color: black;">Total</td>
+    <td style="text-align: center; background-color: lightblue; color: black;">€{{sumUsers}}</td>
+  </ng-template>
+</p-table>
+</div>

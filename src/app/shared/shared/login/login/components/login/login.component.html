@@ -1,0 +1,29 @@
+<div>
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your email correctly!">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input formControlName="email" placeholder="Email" email/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password correctly between 8 and 32 characters!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="password" placeholder="Password" minlength="8" maxlength="32" id="password"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your PIN correctly between 4 and 8 characters!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="pin" placeholder="PIN" minlength="4" maxlength="8" id="pin"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button  nz-button class="login-form-button login-form-margin"  type="button" (click)="fillPassAndPin()">{{checked ? 'Delete pass and pin info' : 'Fill pass and pin'}}</button>
+  <nz-alert nzType="error" nzMessage="{{errorMessage}}" nzShowIcon *ngIf="errorMessage"></nz-alert >
+  <button  nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+
+</form>
+<div>
